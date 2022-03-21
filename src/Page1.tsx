@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { Children, useEffect, useRef, useState } from 'react';
 import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
 import Parallax from 'rc-scroll-anim/lib/ScrollParallax';
 import QueueAnim from 'rc-queue-anim';
@@ -10,13 +9,15 @@ interface Page1Props {
 }
 
 interface Page1State {
-    hoverNum: any
+    hoverNum: any,
+    children: any
 }
 
 const Page1: React.FC<Page1Props> = (props: Page1Props, state: Page1State) => {
+   
+
     const [page1State, setPage1State] = useState(state);
 
-    let children: any = [[], [], []];
 
     let onMouseOver = (i: any) => {
         setPage1State((prevState) => ({ ...prevState, hoverNum: i }));
@@ -44,6 +45,8 @@ const Page1: React.FC<Page1Props> = (props: Page1Props, state: Page1State) => {
     }
 
     useEffect(() => {
+        let test1: any = [[], [], []];
+
         featuresCN.forEach((item, i) => {
             const isHover = page1State.hoverNum === i;
             const pointChild = [
@@ -90,23 +93,24 @@ const Page1: React.FC<Page1Props> = (props: Page1Props, state: Page1State) => {
                     </div>
                 </li>
             );
-            children[Math.floor(i / 3)].push(child);
+            test1[Math.floor(i / 3)].push(child);
         });
     
-        children = children.map((item: JSX.Element, i: number) => (
+        let t = test1.map((item: JSX.Element, i: number) => (
             <QueueAnim
                 className="page1-box-wrapper"
                 key={i.toString()}
                 type="bottom"
                 leaveReverse
-                delay={[i * 100, (children.length - 1 - i) * 100]}
+                delay={[i * 100, (test1.length - 1 - i) * 100]}
                 component="ul"
             >
                 {item}
             </QueueAnim>
         ));
+        setPage1State((prev) => ({...prev, children: t}));
     }, []);
-    
+
 
     return (
         <div className="home-page page1" >
@@ -125,7 +129,7 @@ const Page1: React.FC<Page1Props> = (props: Page1Props, state: Page1State) => {
                     <div className="title-line" />
                 </div>
                 <OverPack>
-                    {children}
+                    {page1State.children}
                 </OverPack>
             </div>
         </div>

@@ -1,16 +1,24 @@
-@import './default.less';
-
 .nav-phone-icon {
-  display: none;
-  position: absolute;
-  right: 30px;
-  top: 25px;
-  z-index: 1;
-  width: 16px;
-  height: 22px;
-  cursor: pointer;
+	display: none;
+	position: absolute;
+	right: 30px;
+	top: 25px;
+	z-index: 1;
+	width: 16px;
+	height: 22px;
+	cursor: pointer;
+	display: block;
+	&:before {
+		content: "";
+		display: block;
+		border-radius: 2px;
+		width: 16px;
+		height: 2px;
+		background: #777;
+		box-shadow: 0 6px 0 0 #777, 0 12px 0 0 #777;
+		position: absolute;
+	}
 }
-
 @media only screen and (min-width: 1440px) and (max-width: 1599px) {
   .main-wrapper > .ant-row > .ant-col-xl-5 {
     width: 274px;
@@ -27,7 +35,7 @@
   }
 }
 
-@media only screen and (max-width: @screen-xl) {
+@media only screen and (max-width: 1200px) {
   #logo {
     padding: 0 40px;
   }
@@ -41,7 +49,7 @@
   }
 }
 
-@media only screen and (max-width: @screen-lg) {
+@media only screen and (max-width: 992px) {
   .code-boxes-col-2-1, .code-boxes-col-1-1 {
     float: none;
     width: 100%;
@@ -113,17 +121,17 @@
   button.lang {
     display: block;
     margin: 29px auto 16px;
-    color: @site-text-color;
-    border-color: @site-text-color;
+    color: #1890ff;
+    border-color: #1890ff;
   }
 
   div.version {
     display: block;
     margin: 29px auto 16px;
     & > .ant-select-selection {
-      color: @site-text-color;
+      color: #1890ff;
       &:not(:hover) {
-        border-color: @site-text-color;
+        border-color: #1890ff;
       }
     }
   }
@@ -215,7 +223,7 @@
 
   .prev-next-nav {
     margin-left: 16px;
-    width: ~"calc(100% - 32px)";
+    width: calc(100% - 32px);
   }
   .drawer {
     .ant-menu-inline .ant-menu-item:after,
@@ -226,7 +234,7 @@
   }
 }
 
-@media only screen and (max-width: @screen-md) {
+@media only screen and (max-width: 768px) {
   #logo {
     padding: 0;
     display: block;
@@ -250,7 +258,7 @@
 
   .banner-wrapper {
     width: 80%;
-    height: calc(~"100vh - 64px");
+    height: calc(100vh - 64px);
     overflow: hidden;
     .banner-title-wrapper, .banner-image-wrapper {
       display: block;
@@ -293,7 +301,7 @@
   }
 }
 
-@media only screen and (max-width: @screen-xs) {
+@media only screen and (max-width: 576px) {
   .page1 {
     height: 2400px;
   }
